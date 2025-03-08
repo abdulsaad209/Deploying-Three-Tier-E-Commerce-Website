@@ -11,3 +11,21 @@ Intuitive User Interface: The website is designed with the user in mind. It offe
 Seamless Shopping Experience: From browsing products to managing orders and tracking shipments, every aspect of the shopping experience is optimized for maximum convenience. The website utilizes the latest e-commerce technologies to provide a fast, secure and seamless shopping experience.
 
 Robust and Scalable Architecture: The platform is built on top of the Django framework, which is known for its scalability and robustness. This ensures that the website can handle large volumes of user traffic and provides a reliable shopping experience to customers even during peak periods.
+
+### You should have python3.8.6 installed on your environment to run locally but if you run through docker, docker-compose or k8s then nothing required
+
+### Running Manually on Local Server
+virtualenv venv
+source venv/bin/activate
+pip install django
+pip install Pillow
+
+python manage.py runserver
+
+### Running through DockerCompose
+git clone <repo>
+cd Deploying-Three-Tier-E-Commerce-Website
+docker-compose up -d
+
+
+
