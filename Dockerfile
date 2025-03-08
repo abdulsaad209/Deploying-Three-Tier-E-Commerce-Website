@@ -1,18 +1,23 @@
-# Use an official Python image as the base
-FROM python:3.8.6
+# Use official Python image
+FROM python:3.8
 
-# Set working directory inside the container
-WORKDIR /application
+# Set the working directory
+WORKDIR /app
 
-# Copy only the necessary files first to leverage Docker caching
-COPY requirements.txt /application
-COPY . /application
+# Copy requirements.txt and install dependencies
+COPY requirements.txt /app/
+RUN apt update && apt install python3-dev default-libmysqlclient-dev build-essential pkg-config -y
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Copy the project files
+COPY . /app/
 
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+# Collect Static Files
+RUN python manage.py collectstatic --noinput
 
-ENTRYPOINT ["python"]
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+# Expose the application port
+EXPOSE 8000
+
+# Start the Django server
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "shoppinglyx.wsgi:application"]
 
