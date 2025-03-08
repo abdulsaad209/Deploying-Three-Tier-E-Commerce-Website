@@ -74,34 +74,32 @@ WSGI_APPLICATION = 'shoppinglyx.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
 
-# When need to use with Docker Compose
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'shoppingwebsite'),
-        'USER': os.getenv('DB_USER', 'admin'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'saad123'),
-        'HOST': os.getenv('DB_HOST', 'db'),  # Matches the MySQL container name
-        'PORT': os.getenv('DB_PORT', '3306'),
-    }
-}
-
-# When need to run containers seperately without docker compose or with k8s
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'shoppingwebsite',
-#        'USER': 'admin',
-#        'PASSWORD': 'saad123',
-#        'HOST': '192.168.100.15',  # or your MySQL server IP
-#        'PORT': '3306',
-#        'OPTIONS': {
-#            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-#            }
-#        }
+#        'NAME': os.getenv('DB_NAME', 'shoppingwebsite'),
+#        'USER': os.getenv('DB_USER', 'admin'),
+#        'PASSWORD': os.getenv('DB_PASSWORD', 'saad123'),
+#        'HOST': os.getenv('DB_HOST', 'db'),  # Matches the MySQL container name
+#        'PORT': os.getenv('DB_PORT', '3306'),
 #    }
+#}
+#
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DB_NAME', 'shoppingwebsite'),
+        'USER': os.environ.get('DB_USER', 'admin'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'saad123'),
+        'HOST': os.environ.get('DB_HOST', '192.168.100.14'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
+    }
+}
 
 
 # Password validation
