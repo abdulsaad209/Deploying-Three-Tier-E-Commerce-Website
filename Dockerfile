@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy requirements.txt and install dependencies
 COPY requirements.txt /app/
-RUN apt update && apt install python3-dev default-libmysqlclient-dev build-essential pkg-config -y
+RUN apt update && apt install vim python3-dev default-libmysqlclient-dev build-essential pkg-config -y
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files

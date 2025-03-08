@@ -5,25 +5,25 @@ services:
     image: saadzahid/mysql-db-django:v1
     container_name: mysql_db
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: shoppingwebsite
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: saad123
+      #environment:
+      #MYSQL_ROOT_PASSWORD: root
+      #MYSQL_DATABASE: shoppingwebsite
+      #MYSQL_USER: admin
+      #MYSQL_PASSWORD: saad123
     ports:
       - "3306:3306"
 
   web:
-    build: .
+    image: saadzahid/ecommerce-mall-app:v2 
     container_name: django_app
     restart: always
     depends_on:
       - db
-    environment:
-      - DB_HOST=db
-      - DB_NAME=shoppingwebsite
-      - DB_USER=admin
-      - DB_PASS=saad123
+        #environment:
+        #  - DB_HOST=db
+        #  - DB_NAME=shoppingwebsite
+        #  - DB_USER=admin
+        #  - DB_PASS=saad123
     ports:
       - "8000:8000"
         #command: python manage.py migrate

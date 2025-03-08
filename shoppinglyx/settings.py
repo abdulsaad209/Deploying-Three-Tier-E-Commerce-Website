@@ -76,6 +76,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
+# When need to use with Docker Compose
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,14 +88,14 @@ DATABASES = {
     }
 }
 
-
+# When need to run containers seperately without docker compose or with k8s
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql',
 #        'NAME': 'shoppingwebsite',
 #        'USER': 'admin',
 #        'PASSWORD': 'saad123',
-#        'HOST': 'mysql-container',  # or your MySQL server IP
+#        'HOST': '192.168.100.15',  # or your MySQL server IP
 #        'PORT': '3306',
 #        'OPTIONS': {
 #            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
