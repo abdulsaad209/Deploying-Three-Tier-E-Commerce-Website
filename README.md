@@ -24,7 +24,11 @@ python manage.py runserver
 
 ### Running through DockerCompose
 git clone <repo>
+
+
 cd Deploying-Three-Tier-E-Commerce-Website
+
+
 docker-compose up -d
 
 
